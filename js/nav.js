@@ -160,6 +160,12 @@ function renderFooter() {
       <div class="footer-brand">
         <a class="brand" href="index.html">${LOGO_SVG} Enhency</a>
         <p>Modern payment & banking infrastructure for financial businesses.</p>
+        <address class="footer-addr">
+          <strong>Enhency Technologies Private Limited</strong><br/>
+          G-57, Sector 63, Noida, Gautam Buddha Nagar,<br/>
+          Uttar Pradesh, India — 201301<br/>
+          <span>CIN: U62011UP2025PTC224280</span>
+        </address>
       </div>
       ${col("Products", [
         { t: "UPI Stack", href: "upi-stack.html" },

@@ -320,6 +320,9 @@ p { color: var(--text); }
 .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 32px; }
 .footer-brand .brand { color: #fff; }
 .footer-brand p { color: var(--on-dark); font-size: .9rem; margin-top: .9rem; max-width: 260px; }
+.footer-addr { font-style: normal; color: var(--on-dark); font-size: .82rem; line-height: 1.7; margin-top: 1rem; max-width: 280px; }
+.footer-addr strong { color: #fff; font-weight: 600; }
+.footer-addr span { color: #8a93a8; }
 .footer-col h4 { color: #fff; font-size: .82rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
 .footer-col a { display: block; color: var(--on-dark); font-size: .9rem; padding: .3rem 0; }
 .footer-col a:hover { color: #fff; }
