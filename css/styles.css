@@ -325,6 +325,30 @@ p { color: var(--text); }
 .footer-col a:hover { color: #fff; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); font-size: .85rem; color: var(--on-dark); flex-wrap: wrap; }
 .footer-bottom .heart { color: #fff; }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a { width: 34px; height: 34px; border-radius: 9px; display: grid; place-items: center; background: rgba(255,255,255,.08); color: var(--on-dark); transition: background .2s, color .2s, transform .2s; }
+.footer-social a:hover { background: var(--brand); color: #fff; transform: translateY(-2px); }
+.footer-social svg { width: 17px; height: 17px; }
+
+/* Active nav highlight */
+.nav-link.active { color: var(--brand); }
+.nav-link.active .caret { opacity: 1; }
+
+/* Back-to-top button */
+.to-top {
+  position: fixed; right: 22px; bottom: 22px; z-index: 70;
+  width: 46px; height: 46px; border-radius: 50%; border: 0;
+  background: var(--brand); color: #fff; box-shadow: var(--shadow-md);
+  display: grid; place-items: center;
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity .25s, transform .25s, visibility .25s, background .2s;
+}
+.to-top svg { width: 20px; height: 20px; }
+.to-top:hover { background: var(--brand-700); }
+.to-top.show { opacity: 1; visibility: visible; transform: none; }
+
+/* Ecosystem strip (home) */
+.eco-label { text-align: center; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--muted); margin-bottom: 1.3rem; }
 
 /* ---------- Reveal animation (subtle, professional) ---------- */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }

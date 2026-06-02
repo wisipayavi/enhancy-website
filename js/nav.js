@@ -104,10 +104,22 @@ function dropdownHtml(menu, wide) {
   return `<div class="dropdown${wide ? " wide" : ""}">${inner}</div>`;
 }
 
+const CURRENT_FILE = location.pathname.split("/").pop() || "index.html";
+const TOP_HREF = {
+  products: "index.html#products",
+  solutions: "index.html#solutions",
+  resources: "docs.html",
+  about: "company.html",
+};
+function menuIsActive(menu) {
+  return menu.groups.some((g) => g.items.some((it) => it.href === CURRENT_FILE));
+}
+
 function navItemHtml(key, menu) {
   const wide = menu.groups.reduce((n, g) => n + g.items.length, 0) > 5;
+  const active = menuIsActive(menu) ? " active" : "";
   return `<div class="nav-item">
-    <a class="nav-link" href="#" aria-haspopup="true">${menu.label}<i class="caret"></i></a>
+    <a class="nav-link${active}" href="${TOP_HREF[key]}" aria-haspopup="true">${menu.label}<i class="caret"></i></a>
     ${dropdownHtml(menu, wide)}
   </div>`;
 }
@@ -178,10 +190,41 @@ function renderFooter() {
     </div>
     <div class="footer-bottom">
       <span>© ${new Date().getFullYear()} Enhency Technologies Private Limited. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.25 8.25h4.5V24H.25V8.25ZM8.25 8.25h4.31v2.15h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-6.13c0-1.46-.03-3.35-2.04-3.35-2.04 0-2.35 1.6-2.35 3.25V24h-4.5V8.25Z"/></svg></a>
+        <a href="#" aria-label="X" title="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.3 8.34L23 22h-6.4l-5-6.54L5.8 22H2.7l7.8-8.92L1.6 2H8.2l4.52 5.98L18.9 2Zm-1.12 18h1.7L7.3 3.9H5.5L17.78 20Z"/></svg></a>
+        <a href="#" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.75.4-1.27.74-1.56-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.41.36.78 1.06.78 2.14v3.18c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+      </div>
       <span>Build with <span class="heart">♥</span> for financial infrastructure</span>
     </div>
   </div>`;
 }
 
+/* Inject favicon + theme-color into <head>, and a back-to-top button. */
+function injectExtras() {
+  if (!document.querySelector('link[rel="icon"]')) {
+    const link = document.createElement("link");
+    link.rel = "icon";
+    link.type = "image/svg+xml";
+    link.href = "assets/favicon.svg";
+    document.head.appendChild(link);
+  }
+  if (!document.querySelector('meta[name="theme-color"]')) {
+    const m = document.createElement("meta");
+    m.name = "theme-color";
+    m.content = "#0a1733";
+    document.head.appendChild(m);
+  }
+  if (!document.getElementById("toTop")) {
+    const b = document.createElement("button");
+    b.id = "toTop";
+    b.className = "to-top";
+    b.setAttribute("aria-label", "Back to top");
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg>';
+    document.body.appendChild(b);
+  }
+}
+
 renderHeader();
 renderFooter();
+injectExtras();

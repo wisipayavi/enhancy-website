@@ -103,11 +103,23 @@
     });
   }
 
+  /* Back-to-top button (injected by nav.js) */
+  function bindToTop() {
+    const btn = document.getElementById("toTop");
+    if (!btn || btn.dataset.bound) return;
+    btn.dataset.bound = "1";
+    const onScroll = () => btn.classList.toggle("show", window.scrollY > 500);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    onScroll();
+  }
+
   function init() {
     bindNav();
     observeReveals();
     bindCounters();
     bindForms();
+    bindToTop();
   }
 
   if (document.readyState !== "loading") init();

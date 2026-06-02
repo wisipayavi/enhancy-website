@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — Enhency</title>
+  <meta name="theme-color" content="#0a1733" />
+  <!-- Absolute paths so assets load even on deep unknown URLs (GitHub Pages project base) -->
+  <link rel="icon" type="image/svg+xml" href="/enhancy-website/assets/favicon.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/enhancy-website/css/styles.css" />
+  <style>
+    .nf { min-height: 100vh; display: grid; place-items: center; text-align: center;
+      background: radial-gradient(900px 480px at 50% -10%, rgba(29,78,216,.10), transparent 62%), #fff; padding: 24px; }
+    .nf-code { font-size: clamp(5rem, 18vw, 9rem); font-weight: 800; line-height: 1;
+      background: linear-gradient(120deg, #2fc6d6, #3aa0e6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .nf h1 { margin: .6rem 0 .8rem; }
+    .nf p { color: var(--muted); max-width: 460px; margin: 0 auto 1.8rem; }
+    .nf .acts { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <main class="nf">
+    <div>
+      <div class="nf-code">404</div>
+      <h1>This page took an unexpected route</h1>
+      <p>The page you're looking for doesn't exist or may have moved. Let's get you back to secure ground.</p>
+      <div class="acts">
+        <a class="btn btn-primary" href="/enhancy-website/">Back to Home</a>
+        <a class="btn btn-secondary" href="/enhancy-website/docs.html">Explore Documentation</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
