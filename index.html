@@ -66,17 +66,17 @@
               </defs>
 
               <!-- soft glow behind hub -->
-              <ellipse class="iso-glow" cx="490" cy="150" rx="210" ry="120" fill="#3b82f6"/>
-              <ellipse class="iso-glow" cx="490" cy="150" rx="120" ry="68" fill="#60a5fa" style="animation-delay:1.2s"/>
+              <ellipse class="iso-glow" cx="490" cy="150" rx="245" ry="138" fill="#3b82f6"/>
+              <ellipse class="iso-glow" cx="490" cy="150" rx="145" ry="82" fill="#60a5fa" style="animation-delay:1.2s"/>
 
               <!-- connectors (hub -> platforms) with flowing transaction dots -->
               <g fill="none" stroke="#9db8ef" stroke-width="2.5" stroke-linecap="round">
-                <path id="pL" class="iso-link" d="M490 255 L490 300 L260 415"/>
-                <path id="pR" class="iso-link" d="M490 255 L490 300 L720 415"/>
-                <path id="pB" class="iso-link" d="M490 255 L490 300 L490 545"/>
+                <path id="pL" class="iso-link" d="M490 278 L490 332 L255 432"/>
+                <path id="pR" class="iso-link" d="M490 278 L490 332 L725 432"/>
+                <path id="pB" class="iso-link" d="M490 278 L490 332 L490 556"/>
               </g>
               <!-- junction node -->
-              <path d="M490 288 L512 300 L490 312 L468 300 Z" fill="#2f6bf0"/>
+              <path d="M490 320 L510 332 L490 344 L470 332 Z" fill="#2f6bf0"/>
               <g>
                 <circle r="5" fill="#22c55e"><animateMotion dur="2.3s" repeatCount="indefinite" begin="0s"><mpath xlink:href="#pL"/></animateMotion></circle>
                 <circle r="4.5" fill="#0ea5e9"><animateMotion dur="2.3s" repeatCount="indefinite" begin="1.1s"><mpath xlink:href="#pL"/></animateMotion></circle>
@@ -86,50 +86,74 @@
                 <circle r="4.5" fill="#0ea5e9"><animateMotion dur="2.1s" repeatCount="indefinite" begin="1.3s"><mpath xlink:href="#pB"/></animateMotion></circle>
               </g>
 
-              <!-- ===== PLATFORMS ===== -->
+              <!-- ===== PLATFORMS (thick isometric slabs) ===== -->
               <!-- Left: Banks & PSPs -->
               <g>
-                <path d="M260 392 L410 460 L260 528 L110 460 Z" fill="url(#platTop)" stroke="#d8e2f3"/>
-                <path d="M110 460 L260 528 L260 546 L110 478 Z" fill="#dbe5f5"/>
-                <path d="M410 460 L260 528 L260 546 L410 478 Z" fill="#cdd9ee"/>
-                <text x="232" y="512" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5b6478" text-anchor="middle">Banks &amp; PSPs</text>
-                <ellipse cx="200" cy="430" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
-                <ellipse cx="300" cy="408" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
-                <ellipse cx="330" cy="452" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
+                <path d="M100 470 L255 548 L255 582 L100 504 Z" fill="#d3deef"/>
+                <path d="M410 470 L255 548 L255 582 L410 504 Z" fill="#c2d0e8"/>
+                <path d="M255 392 L410 470 L255 548 L100 470 Z" fill="url(#platTop)" stroke="#d8e2f3"/>
+                <text x="205" y="503" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5b6478" text-anchor="middle">Banks &amp; PSPs</text>
               </g>
               <!-- Right: Apps & Merchants -->
               <g>
-                <path d="M720 392 L870 460 L720 528 L570 460 Z" fill="url(#platTop)" stroke="#d8e2f3"/>
-                <path d="M570 460 L720 528 L720 546 L570 478 Z" fill="#dbe5f5"/>
-                <path d="M870 460 L720 528 L720 546 L870 478 Z" fill="#cdd9ee"/>
-                <text x="720" y="512" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5b6478" text-anchor="middle">Apps &amp; Merchants</text>
-                <ellipse cx="650" cy="430" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
-                <ellipse cx="760" cy="408" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
-                <ellipse cx="790" cy="452" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
+                <path d="M570 470 L725 548 L725 582 L570 504 Z" fill="#d3deef"/>
+                <path d="M880 470 L725 548 L725 582 L880 504 Z" fill="#c2d0e8"/>
+                <path d="M725 392 L880 470 L725 548 L570 470 Z" fill="url(#platTop)" stroke="#d8e2f3"/>
+                <text x="770" y="503" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5b6478" text-anchor="middle">Apps &amp; Merchants</text>
               </g>
-              <!-- Bottom: Cards & Networks -->
+              <!-- Bottom: Cards & Networks (with circuit base) -->
               <g>
-                <path d="M490 532 L640 600 L490 668 L340 600 Z" fill="url(#platTop)" stroke="#d8e2f3"/>
-                <path d="M340 600 L490 668 L490 686 L340 618 Z" fill="#dbe5f5"/>
-                <path d="M640 600 L490 668 L490 686 L640 618 Z" fill="#cdd9ee"/>
-                <text x="490" y="652" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5b6478" text-anchor="middle">Cards &amp; Networks</text>
-                <ellipse cx="420" cy="585" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
-                <ellipse cx="560" cy="585" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
-                <ellipse cx="490" cy="548" rx="26" ry="10" fill="#1b3b73" opacity=".10"/>
+                <path d="M325 612 L490 694 L490 738 L325 656 Z" fill="#c9d6ec"/>
+                <path d="M655 612 L490 694 L490 738 L655 656 Z" fill="#bccbe6"/>
+                <g stroke="#9fb0d2" stroke-width="2" fill="none" opacity=".8" stroke-linecap="round">
+                  <path d="M375 648 L420 674 L420 700"/><path d="M375 648 L375 666"/>
+                  <path d="M605 648 L560 674 L560 700"/><path d="M605 648 L605 666"/>
+                  <path d="M455 686 L455 712"/>
+                </g>
+                <g fill="#7f93bd"><circle cx="375" cy="648" r="3"/><circle cx="420" cy="674" r="3"/><circle cx="605" cy="648" r="3"/><circle cx="560" cy="674" r="3"/><circle cx="455" cy="686" r="3"/></g>
+                <path d="M490 530 L655 612 L490 694 L325 612 Z" fill="url(#platTop)" stroke="#d8e2f3"/>
+                <text x="490" y="648" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5b6478" text-anchor="middle">Cards &amp; Networks</text>
               </g>
 
-              <!-- ===== FLOATING TILES ===== -->
-              <g class="iso-tile" style="animation-delay:.0s"><rect x="172" y="327" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-bank" x="186" y="341" width="28" height="28" color="#4f46e5"/></g>
-              <g class="iso-tile" style="animation-delay:.6s"><rect x="272" y="305" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-send" x="286" y="319" width="28" height="28" color="#1d4ed8"/></g>
-              <g class="iso-tile" style="animation-delay:1.1s"><rect x="302" y="349" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-phone" x="316" y="363" width="28" height="28" color="#0ea5e9"/></g>
+              <!-- ===== PEDESTALS + FLOATING TILES ===== -->
+              <!-- Left platform tiles -->
+              <g><path d="M200 443 L218 452 L200 461 L182 452 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M182 452 L200 461 L200 476 L182 467 Z" fill="#dbe5f5"/><path d="M218 452 L200 461 L200 476 L218 467 Z" fill="#cdd9ee"/></g>
+              <line x1="200" y1="426" x2="200" y2="443" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:0s"><rect x="172" y="370" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-bank" x="186" y="383" width="28" height="28" color="#4f46e5"/></g>
 
-              <g class="iso-tile" style="animation-delay:.3s"><rect x="622" y="327" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-bag" x="636" y="341" width="28" height="28" color="#7c3aed"/></g>
-              <g class="iso-tile" style="animation-delay:.9s"><rect x="732" y="305" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-ticket" x="746" y="319" width="28" height="28" color="#d97706"/></g>
-              <g class="iso-tile" style="animation-delay:1.4s"><rect x="762" y="349" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-store" x="776" y="363" width="28" height="28" color="#059669"/></g>
+              <g><path d="M270 423 L288 432 L270 441 L252 432 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M252 432 L270 441 L270 456 L252 447 Z" fill="#dbe5f5"/><path d="M288 432 L270 441 L270 456 L288 447 Z" fill="#cdd9ee"/></g>
+              <line x1="270" y1="406" x2="270" y2="423" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:.6s"><rect x="242" y="350" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-send" x="256" y="363" width="28" height="28" color="#1d4ed8"/></g>
 
-              <g class="iso-tile" style="animation-delay:.2s"><rect x="392" y="482" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-card" x="406" y="496" width="28" height="28" color="#1d4ed8"/></g>
-              <g class="iso-tile" style="animation-delay:.8s"><rect x="532" y="482" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-globe" x="546" y="496" width="28" height="28" color="#0ea5e9"/></g>
-              <g class="iso-tile" style="animation-delay:1.2s"><rect x="462" y="446" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-shield" x="476" y="460" width="28" height="28" color="#059669"/></g>
+              <g><path d="M310 459 L328 468 L310 477 L292 468 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M292 468 L310 477 L310 492 L292 483 Z" fill="#dbe5f5"/><path d="M328 468 L310 477 L310 492 L328 483 Z" fill="#cdd9ee"/></g>
+              <line x1="310" y1="442" x2="310" y2="459" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:1.1s"><rect x="282" y="386" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-phone" x="296" y="399" width="28" height="28" color="#0ea5e9"/></g>
+
+              <!-- Right platform tiles -->
+              <g><path d="M672 443 L690 452 L672 461 L654 452 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M654 452 L672 461 L672 476 L654 467 Z" fill="#dbe5f5"/><path d="M690 452 L672 461 L672 476 L690 467 Z" fill="#cdd9ee"/></g>
+              <line x1="672" y1="426" x2="672" y2="443" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:.3s"><rect x="644" y="370" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-bag" x="658" y="383" width="28" height="28" color="#7c3aed"/></g>
+
+              <g><path d="M740 423 L758 432 L740 441 L722 432 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M722 432 L740 441 L740 456 L722 447 Z" fill="#dbe5f5"/><path d="M758 432 L740 441 L740 456 L758 447 Z" fill="#cdd9ee"/></g>
+              <line x1="740" y1="406" x2="740" y2="423" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:.9s"><rect x="712" y="350" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-ticket" x="726" y="363" width="28" height="28" color="#d97706"/></g>
+
+              <g><path d="M800 459 L818 468 L800 477 L782 468 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M782 468 L800 477 L800 492 L782 483 Z" fill="#dbe5f5"/><path d="M818 468 L800 477 L800 492 L818 483 Z" fill="#cdd9ee"/></g>
+              <line x1="800" y1="442" x2="800" y2="459" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:1.4s"><rect x="772" y="386" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-store" x="786" y="399" width="28" height="28" color="#059669"/></g>
+
+              <!-- Bottom platform tiles -->
+              <g><path d="M440 593 L458 602 L440 611 L422 602 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M422 602 L440 611 L440 626 L422 617 Z" fill="#dbe5f5"/><path d="M458 602 L440 611 L440 626 L458 617 Z" fill="#cdd9ee"/></g>
+              <line x1="440" y1="576" x2="440" y2="593" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:.2s"><rect x="412" y="520" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-card" x="426" y="533" width="28" height="28" color="#1d4ed8"/></g>
+
+              <g><path d="M548 593 L566 602 L548 611 L530 602 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M530 602 L548 611 L548 626 L530 617 Z" fill="#dbe5f5"/><path d="M566 602 L548 611 L548 626 L566 617 Z" fill="#cdd9ee"/></g>
+              <line x1="548" y1="576" x2="548" y2="593" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:.8s"><rect x="520" y="520" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-globe" x="534" y="533" width="28" height="28" color="#0ea5e9"/></g>
+
+              <g><path d="M490 565 L508 574 L490 583 L472 574 Z" fill="#eef3fb" stroke="#d8e2f3"/><path d="M472 574 L490 583 L490 598 L472 589 Z" fill="#dbe5f5"/><path d="M508 574 L490 583 L490 598 L508 589 Z" fill="#cdd9ee"/></g>
+              <line x1="490" y1="548" x2="490" y2="565" stroke="#c2cfe6" stroke-width="3"/>
+              <g class="iso-tile" style="animation-delay:1.2s"><rect x="462" y="492" width="56" height="56" rx="14" fill="#fff" filter="url(#ds)"/><use href="#i-shield" x="476" y="505" width="28" height="28" color="#059669"/></g>
 
               <!-- floating checkout card (product realism) -->
               <g class="iso-tile" style="animation-delay:.7s">
@@ -157,18 +181,18 @@
 
               <!-- ===== CENTRAL HUB with Enhency logo ===== -->
               <g class="iso-hub">
-                <!-- server slab -->
-                <path d="M490 70 L650 150 L490 230 L330 150 Z" fill="url(#slabTop)" stroke="#dde6f4"/>
-                <path d="M330 150 L490 230 L490 258 L330 178 Z" fill="#e4ebf7"/>
-                <path d="M650 150 L490 230 L490 258 L650 178 Z" fill="#d3deef"/>
+                <!-- server slab (large, thick) -->
+                <path d="M315 150 L490 238 L490 278 L315 190 Z" fill="#e4ebf7"/>
+                <path d="M665 150 L490 238 L490 278 L665 190 Z" fill="#d3deef"/>
+                <path d="M490 62 L665 150 L490 238 L315 150 Z" fill="url(#slabTop)" stroke="#dde6f4"/>
                 <g stroke="#b9c8e4" stroke-width="2" stroke-linecap="round">
-                  <path d="M520 226 L560 206"/><path d="M530 231 L570 211"/><path d="M540 236 L580 216"/>
+                  <path d="M545 232 L590 209"/><path d="M557 238 L602 215"/><path d="M569 244 L614 221"/>
                 </g>
                 <!-- Enhency logo: rotating ring + static bolt -->
                 <g class="iso-spin">
-                  <path d="M520 110 A52 52 0 1 0 540 178" fill="none" stroke="url(#ring)" stroke-width="17" stroke-linecap="round"/>
+                  <path d="M525 104 A58 58 0 1 0 525 196" fill="none" stroke="url(#ring)" stroke-width="20" stroke-linecap="round"/>
                 </g>
-                <g transform="translate(490 150) scale(2.0) translate(-16 -16)">
+                <g transform="translate(490 150) scale(2.4) translate(-16 -16)">
                   <path d="M18.2 9.6 10.4 16h5l-1.4 6 7.8-6.3h-4.3l1.4-6Z" fill="url(#ring)"/>
                 </g>
               </g>
