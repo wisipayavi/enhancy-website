@@ -80,10 +80,73 @@ function netVisual() {
     </div>
   </div>`;
 }
-function heroVisual(kind) {
-  if (kind === "code") return codeBlock();
+/* Context-aware visuals: built from each page's own content */
+function statusBadge(i) { return ["Live", "Active", "Healthy", "Ready"][i % 4]; }
+
+function consoleCard(title, rows) {
+  const list = (rows || []).slice(0, 4);
+  return `<div class="mock reveal">
+    <div class="mock-head"><i class="d"></i><i class="d"></i><i class="d"></i><span class="t">${esc(title)}</span></div>
+    <div class="mock-body">
+      <div class="mock-bars">${[46, 70, 58, 82, 64, 90, 74].map((h) => `<i style="height:${h}%"></i>`).join("")}</div>
+      ${list.map((r, i) => `<div class="mock-row"><span class="ml"><span class="pin">${String(i + 1).padStart(2, "0")}</span>${esc(r)}</span><span class="mock-badge">${statusBadge(i)}</span></div>`).join("")}
+    </div>
+  </div>`;
+}
+
+function flowCard(title, steps) {
+  const s = (steps || []).slice(0, 4);
+  return `<div class="mock reveal">
+    <div class="mock-head"><i class="d"></i><i class="d"></i><i class="d"></i><span class="t">${esc(title)}</span></div>
+    <div class="mock-body"><div class="flow-pipe">
+      ${s.map((step, i) => `<div class="flow-node"><span class="fn-dot">${i + 1}</span><span>${esc(step)}</span></div>${i < s.length - 1 ? '<div class="flow-arrow">↓</div>' : ""}`).join("")}
+    </div></div>
+  </div>`;
+}
+
+const RAIL = {
+  "upi-stack": ["POST /v1/upi/collect", "Initiate a UPI collect request", [["rail", '"upi"'], ["flow", '"collect"'], ["amount", "14900"], ["vpa", '"merchant@enhency"']]],
+  "acquiring-upi-stack": ["POST /v1/upi/acquire", "Accept a merchant UPI payment", [["mode", '"qr"'], ["amount", "49900"], ["merchant_id", '"mer_8x2k"']]],
+  "issuing-upi-stack": ["POST /v1/upi/authorize", "Authorize an issuer-side UPI debit", [["account", '"ac_91f0"'], ["amount", "14900"], ["currency", '"INR"']]],
+  "tpap-stack": ["POST /v1/tpap/transactions", "Start a TPAP UPI payment", [["flow", '"intent"'], ["vpa", '"user@enhency"'], ["amount", "9900"]]],
+  "imps-stack": ["POST /v1/imps/transfer", "Send an IMPS transfer", [["ifsc", '"HDFC0000123"'], ["account", '"50100xxxx"'], ["amount", "250000"]]],
+  "nach": ["POST /v1/nach/mandates", "Register a NACH mandate", [["max_amount", "500000"], ["frequency", '"monthly"'], ["account", '"50100xxxx"']]],
+  "verification-suite": ["POST /v1/kyc/verify", "Run an eKYC verification", [["type", '"ekyc"'], ["id_number", '"XXXX1234"'], ["consent", "true"]]],
+  "enhency-shield": ["POST /v1/risk/evaluate", "Score a transaction for risk", [["txn_id", '"txn_4a9"'], ["amount", "99900"], ["signals", '"device,velocity"']]],
+  "merchant-suite": ["POST /v1/merchants", "Onboard a merchant", [["name", '"Acme Retail"'], ["mcc", '"5411"'], ["settlement", '"t+1"']]],
+  "communication": ["POST /v1/messages", "Send a transactional message", [["channel", '"whatsapp"'], ["to", '"+9198xxxxxx"'], ["template", '"txn_alert"']]],
+  "soundbox-qr": ["POST /v1/qr", "Create a dynamic UPI QR", [["type", '"dynamic"'], ["amount", "19900"], ["soundbox", "true"]]],
+  "pos": ["POST /v1/pos/charge", "Charge on a POS terminal", [["terminal_id", '"tid_77"'], ["amount", "129900"], ["mode", '"card"']]],
+  "digital-banking": ["POST /v1/banking/accounts", "Provision a banking profile", [["product", '"savings"'], ["kyc", '"verified"']]],
+  "enhency-mobile": ["POST /v1/mobile/session", "Start a mobile banking session", [["device_id", '"dev_2k"'], ["auth", '"biometric"']]],
+  "payment-gateway-orchestration": ["POST /v1/payments", "Route with orchestration", [["amount", "49900"], ["routing", '"smart"'], ["retries", "true"]]],
+  "payment-link": ["POST /v1/payment-links", "Create a payment link", [["amount", "250000"], ["purpose", '"Invoice #1042"'], ["notify", '"email,sms"']]],
+  "payment-form": ["POST /v1/checkout/forms", "Create a hosted checkout form", [["amount", "49900"], ["currency", '"INR"'], ["theme", '"light"']]],
+  "tpv": ["POST /v1/tpv/validate", "Validate a bank account", [["ifsc", '"ICIC0000456"'], ["account", '"00112233"'], ["name", '"Jane Doe"']]],
+  "docs": ["POST /v1/payments", "Your first API call", [["rail", '"upi"'], ["amount", "14900"], ["currency", '"INR"']]],
+  _default: ["POST /v1/payments", "Create a payment", [["rail", '"upi"'], ["amount", "14900"], ["currency", '"INR"']]],
+};
+
+function railCode(id) {
+  const spec = RAIL[id] || RAIL._default;
+  const body = spec[2].map((p) => `  ${p[0]}: <span class="s">${p[1]}</span>,`).join("\n");
+  return `<div class="code-block reveal">
+    <div class="cb-head"><i class="d"></i><i class="d"></i><i class="d"></i><span class="t">${spec[0]}</span></div>
+    <pre><code><span class="c">// ${spec[1]}</span>
+<span class="k">const</span> res = <span class="k">await</span> enhency.api.<span class="k">post</span>({
+${body}
+});
+<span class="c">// → { id, status, created_at }</span></code></pre>
+  </div>`;
+}
+
+function heroVisual(p, id) {
+  const kind = p.hero.visual;
+  if (kind === "code") return railCode(id);
   if (kind === "network") return netVisual();
-  return mockDashboard();
+  const rows = p.overview && p.overview.cards ? p.overview.cards.map((c) => c.t) : [];
+  const name = p.crumb && p.crumb.length ? p.crumb[p.crumb.length - 1].t : "Console";
+  return consoleCard(name + " · console", rows);
 }
 
 function crumbHtml(crumb) {
@@ -94,7 +157,7 @@ function crumbHtml(crumb) {
 }
 
 /* ---- main interior renderer ---- */
-function renderPage(p) {
+function renderPage(p, id) {
   let html = "";
 
   // Sub-hero
@@ -105,7 +168,7 @@ function renderPage(p) {
       <p class="lead">${esc(p.hero.text)}</p>
       <div class="hero-cta">${btn(p.hero.primary, "btn-primary")}${btn(p.hero.secondary, "btn-secondary")}</div>
     </div>
-    <div class="feature-media">${heroVisual(p.hero.visual)}</div>
+    <div class="feature-media">${heroVisual(p, id)}</div>
   </div></section>`;
 
   // Intro
@@ -126,10 +189,11 @@ function renderPage(p) {
 
   // Feature sections (alternating)
   if (p.sections && p.sections.length) {
-    const visuals = [mockDashboard("Transaction Monitor"), codeBlock(), netVisual()];
     html += `<section class="section"><div class="container">`;
     p.sections.forEach((s, i) => {
-      const media = `<div class="feature-media">${visuals[i % visuals.length]}</div>`;
+      const labels = s.caps ? s.caps.map((c) => c.t) : [];
+      const vis = i % 2 === 0 ? consoleCard(s.title, labels) : flowCard(s.title, labels);
+      const media = `<div class="feature-media">${vis}</div>`;
       const body = `<div class="feature-body reveal"><span class="eyebrow">Capability</span>
         <h2>${esc(s.title)}</h2><p class="lead">${esc(s.text)}</p>${capList(s.caps)}</div>`;
       html += `<div class="feature${i % 2 ? " flip" : ""}">${i % 2 ? media + body : body + media}</div>`;
@@ -153,7 +217,7 @@ function renderPage(p) {
           <h2>${esc(p.developer.title)}</h2><p class="lead">${esc(p.developer.text)}</p>
           <div class="tag-row">${p.developer.tags.map((t) => `<span class="tag brand">${esc(t)}</span>`).join("")}</div>
         </div>
-        <div class="feature-media">${codeBlock()}</div>
+        <div class="feature-media">${railCode(id)}</div>
       </div>
     </div></section>`;
   }
@@ -194,7 +258,7 @@ function renderContact() {
       <p class="lead">Talk to our team to explore payment infrastructure, banking technology, merchant ecosystems, onboarding systems, fraud prevention, and digital financial platforms designed for modern financial operations.</p>
       <div class="hero-cta"><a class="btn btn-primary" href="#contact-form">Talk to Sales</a><a class="btn btn-secondary" href="#contact-form">Contact Support</a></div>
     </div>
-    <div class="feature-media">${mockDashboard("Inquiry Routing")}</div>
+    <div class="feature-media">${consoleCard("Inquiry routing", ["Sales inquiry", "Partnership inquiry", "Technical support", "Merchant support"])}</div>
   </div></section>
 
   <section class="section"><div class="container">
@@ -279,7 +343,7 @@ function renderLogin() {
   if (id === "contact") html = renderContact();
   else if (id === "login") html = renderLogin();
   else if (PAGES[id]) {
-    html = renderPage(PAGES[id]);
+    html = renderPage(PAGES[id], id);
     document.title = (PAGES[id].crumb ? PAGES[id].crumb[PAGES[id].crumb.length - 1].t : "Enhency") + " — Enhency";
   } else {
     html = `<section class="section"><div class="container"><h1>Page not found</h1></div></section>`;
