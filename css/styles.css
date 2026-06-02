@@ -255,6 +255,11 @@ p { color: var(--text); }
 .flow-node .fn-dot { flex: none; width: 26px; height: 26px; border-radius: 8px; background: var(--brand); color: #fff; display: grid; place-items: center; font-size: .8rem; font-weight: 700; }
 .flow-arrow { align-self: center; color: var(--muted); font-size: 1.05rem; line-height: 1; padding: 5px 0; }
 
+/* grid tiles visual */
+.tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tg-item { display: flex; align-items: center; gap: 10px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: .7rem .75rem; font-size: .82rem; font-weight: 600; color: var(--ink); }
+.tg-ic { flex: none; width: 28px; height: 28px; border-radius: 8px; background: var(--brand-50); color: var(--brand); display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
+
 /* product illustration panel */
 .viz { padding: 20px; display: grid; place-items: center; background: linear-gradient(180deg, #fbfcff, #f5f8fd); }
 .viz svg { width: 100%; height: auto; max-height: 300px; }

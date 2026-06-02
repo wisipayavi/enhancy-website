@@ -109,6 +109,34 @@ function flowCard(title, steps) {
   </div>`;
 }
 
+function statRingCard(title, rows) {
+  const r = (rows || []).slice(0, 3);
+  return `<div class="mock reveal">
+    <div class="mock-head"><i class="d"></i><i class="d"></i><i class="d"></i><span class="t">${esc(title)}</span></div>
+    <div class="mock-body" style="display:flex;gap:18px;align-items:center">
+      <svg width="116" height="116" viewBox="0 0 120 120" style="flex:none">
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#eef3fb" stroke-width="13"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#1d4ed8" stroke-width="13" stroke-linecap="round" stroke-dasharray="246 302" transform="rotate(-90 60 60)"/>
+        <text x="60" y="57" text-anchor="middle" font-size="23" font-weight="800" fill="#0b1b34" font-family="Inter,sans-serif">99%</text>
+        <text x="60" y="76" text-anchor="middle" font-size="10" fill="#6b7790" font-family="Inter,sans-serif">success rate</text>
+      </svg>
+      <div style="flex:1">
+        ${r.map((x) => `<div class="mock-row" style="padding:9px 0"><span class="ml"><span class="pin">✓</span>${esc(x)}</span><span class="mock-badge">OK</span></div>`).join("")}
+      </div>
+    </div>
+  </div>`;
+}
+
+function gridTilesCard(title, rows) {
+  const r = (rows || []).slice(0, 4);
+  return `<div class="mock reveal">
+    <div class="mock-head"><i class="d"></i><i class="d"></i><i class="d"></i><span class="t">${esc(title)}</span></div>
+    <div class="mock-body"><div class="tile-grid">
+      ${r.map((x) => `<div class="tg-item"><span class="tg-ic">${esc(x.trim().charAt(0).toUpperCase())}</span><span>${esc(x)}</span></div>`).join("")}
+    </div></div>
+  </div>`;
+}
+
 const RAIL = {
   "upi-stack": ["POST /v1/upi/collect", "Initiate a UPI collect request", [["rail", '"upi"'], ["flow", '"collect"'], ["amount", "14900"], ["vpa", '"merchant@enhency"']]],
   "acquiring-upi-stack": ["POST /v1/upi/acquire", "Accept a merchant UPI payment", [["mode", '"qr"'], ["amount", "49900"], ["merchant_id", '"mer_8x2k"']]],
@@ -247,7 +275,8 @@ function renderPage(p, id) {
     p.sections.forEach((s, i) => {
       const labels = s.caps ? s.caps.map((c) => c.t) : [];
       const seed = (id ? id.length : 0) + i * 3 + s.title.length;
-      const vis = i % 2 === 0 ? consoleCard(s.title, labels, seed) : flowCard(s.title, labels);
+      const builders = [consoleCard, flowCard, statRingCard, gridTilesCard];
+      const vis = builders[i % builders.length](s.title, labels, seed);
       const media = `<div class="feature-media">${vis}</div>`;
       const body = `<div class="feature-body reveal"><span class="eyebrow">Capability</span>
         <h2>${esc(s.title)}</h2><p class="lead">${esc(s.text)}</p>${capList(s.caps)}</div>`;
