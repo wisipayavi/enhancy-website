@@ -114,12 +114,31 @@
     onScroll();
   }
 
+  /* Subtle cursor parallax tilt for the isometric hero scene */
+  function bindParallax() {
+    const hero = document.querySelector(".hero");
+    const iso = document.querySelector(".iso");
+    if (!hero || !iso || iso.dataset.bound) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    iso.dataset.bound = "1";
+    hero.addEventListener("pointermove", (e) => {
+      const r = hero.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5;
+      const ny = (e.clientY - r.top) / r.height - 0.5;
+      iso.style.transform = `rotateX(${(-ny * 6).toFixed(2)}deg) rotateY(${(nx * 8).toFixed(2)}deg)`;
+    });
+    hero.addEventListener("pointerleave", () => {
+      iso.style.transform = "";
+    });
+  }
+
   function init() {
     bindNav();
     observeReveals();
     bindCounters();
     bindForms();
     bindToTop();
+    bindParallax();
   }
 
   if (document.readyState !== "loading") init();

@@ -69,6 +69,13 @@
               <ellipse class="iso-glow" cx="490" cy="150" rx="245" ry="138" fill="#3b82f6"/>
               <ellipse class="iso-glow" cx="490" cy="150" rx="145" ry="82" fill="#60a5fa" style="animation-delay:1.2s"/>
 
+              <!-- ground contact shadows under platforms -->
+              <g fill="#1b3b73">
+                <ellipse cx="255" cy="600" rx="165" ry="34" opacity=".07"/>
+                <ellipse cx="725" cy="600" rx="165" ry="34" opacity=".07"/>
+                <ellipse cx="490" cy="752" rx="180" ry="36" opacity=".07"/>
+              </g>
+
               <!-- connectors (hub -> platforms) with flowing transaction dots -->
               <g fill="none" stroke="#9db8ef" stroke-width="2.5" stroke-linecap="round">
                 <path id="pL" class="iso-link" d="M490 278 L490 332 L255 432"/>
@@ -114,6 +121,14 @@
                 <path d="M490 530 L655 612 L490 694 L325 612 Z" fill="url(#platTop)" stroke="#d8e2f3"/>
                 <text x="490" y="648" font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="#5b6478" text-anchor="middle">Cards &amp; Networks</text>
               </g>
+
+              <!-- intra-platform wiring (internal network look) -->
+              <g stroke="#aebfdd" stroke-width="1.6" fill="none" opacity=".85">
+                <path d="M255 470 L200 452 M255 470 L270 432 M255 470 L310 468"/>
+                <path d="M725 470 L672 452 M725 470 L740 432 M725 470 L800 468"/>
+                <path d="M490 612 L440 602 M490 612 L548 602 M490 612 L490 574"/>
+              </g>
+              <g fill="#7f93bd"><circle cx="255" cy="470" r="3.5"/><circle cx="725" cy="470" r="3.5"/><circle cx="490" cy="612" r="3.5"/></g>
 
               <!-- ===== PEDESTALS + FLOATING TILES ===== -->
               <!-- Left platform tiles -->
@@ -188,6 +203,9 @@
                 <g stroke="#b9c8e4" stroke-width="2" stroke-linecap="round">
                   <path d="M545 232 L590 209"/><path d="M557 238 L602 215"/><path d="M569 244 L614 221"/>
                 </g>
+                <!-- left-face indicator lights + slots -->
+                <g><circle cx="356" cy="214" r="4" fill="#22c55e"/><circle cx="370" cy="221" r="4" fill="#0ea5e9"/><circle cx="384" cy="228" r="4" fill="#cdd9ee"/></g>
+                <g stroke="#c3d0e8" stroke-width="2" stroke-linecap="round"><path d="M356 199 L398 222"/><path d="M356 206 L398 229"/></g>
                 <!-- Enhency logo: rotating ring + static bolt -->
                 <g class="iso-spin">
                   <path d="M525 104 A58 58 0 1 0 525 196" fill="none" stroke="url(#ring)" stroke-width="20" stroke-linecap="round"/>
