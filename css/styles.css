@@ -379,6 +379,23 @@ p { color: var(--text); }
 .step p { color: var(--muted); font-size: .92rem; }
 .step .step-link { display: inline-flex; align-items: center; gap: .35rem; margin-top: 1rem; font-weight: 600; font-size: .9rem; color: var(--brand); }
 
+/* ---------- Hero depth polish ---------- */
+.hero-grid { position: relative; z-index: 1; }
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(29,78,216,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,78,216,.055) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask: radial-gradient(72% 62% at 72% 32%, #000 0%, transparent 76%);
+  mask: radial-gradient(72% 62% at 72% 32%, #000 0%, transparent 76%);
+}
+.hero h1 { font-size: clamp(2.3rem, 5vw, 3.8rem); }
+.hero h1 .grad {
+  background: linear-gradient(120deg, #2fc6d6 0%, #2f6bf0 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+
 /* ---------- Reveal animation (subtle, professional) ---------- */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.in { opacity: 1; transform: none; }
