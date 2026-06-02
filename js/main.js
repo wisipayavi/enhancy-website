@@ -123,12 +123,18 @@
     iso.dataset.bound = "1";
     hero.addEventListener("pointermove", (e) => {
       const r = hero.getBoundingClientRect();
-      const nx = (e.clientX - r.left) / r.width - 0.5;
-      const ny = (e.clientY - r.top) / r.height - 0.5;
+      const px = e.clientX - r.left;
+      const py = e.clientY - r.top;
+      const nx = px / r.width - 0.5;
+      const ny = py / r.height - 0.5;
       iso.style.transform = `rotateX(${(-ny * 6).toFixed(2)}deg) rotateY(${(nx * 8).toFixed(2)}deg)`;
+      hero.style.setProperty("--mx", px + "px");
+      hero.style.setProperty("--my", py + "px");
     });
     hero.addEventListener("pointerleave", () => {
       iso.style.transform = "";
+      hero.style.removeProperty("--mx");
+      hero.style.removeProperty("--my");
     });
   }
 

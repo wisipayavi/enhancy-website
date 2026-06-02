@@ -397,6 +397,40 @@ p { color: var(--text); }
 }
 .iso-wrap { perspective: 1300px; }
 .iso { transition: transform .3s ease-out; will-change: transform; }
+.iso-tile { cursor: pointer; transition: transform .18s ease; }
+.iso-tile:hover { animation-play-state: paused; transform: scale(1.14); }
+.iso-tile:hover > rect:first-of-type { stroke: #1d4ed8; stroke-width: 2.5; }
+
+/* hero cursor glow */
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(240px circle at var(--mx, 72%) var(--my, 30%), rgba(47,107,240,.12), transparent 72%);
+}
+
+/* card top-accent on hover */
+.card { position: relative; overflow: hidden; }
+.card::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--accent));
+  transform: scaleX(0); transform-origin: left; transition: transform .28s ease;
+}
+.card:hover::after { transform: scaleX(1); }
+
+/* interior subhero depth (premium) */
+.subhero { position: relative; }
+.subhero::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(29,78,216,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,78,216,.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask: radial-gradient(72% 70% at 78% 26%, #000 0%, transparent 78%);
+  mask: radial-gradient(72% 70% at 78% 26%, #000 0%, transparent 78%);
+}
+.subhero-grid { position: relative; z-index: 1; }
+
+/* footer visit counter */
+.footer-visits strong { color: #fff; }
 
 /* ---------- Reveal animation (subtle, professional) ---------- */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
