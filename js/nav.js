@@ -87,10 +87,12 @@ const LOGO_SVG = `<svg class="logo" viewBox="0 0 40 40" fill="none" xmlns="http:
       <stop stop-color="#33d0d8"/><stop offset="1" stop-color="#3aa0e6"/>
     </linearGradient>
   </defs>
-  <!-- ring with right-side gap -->
-  <path d="M28 8.5A15 15 0 1 0 31.5 28" stroke="url(#enhGrad)" stroke-width="4.4" stroke-linecap="round"/>
-  <!-- inner flow / bolt mark -->
-  <path d="M22.5 12.5 13 20.2h6.2l-1.7 7.3 9.5-7.7H20.8l1.7-7.3Z" fill="url(#enhGrad)"/>
+  <!-- split-ring mark + center accent (recreation) -->
+  <g fill="none" stroke="url(#enhGrad)" stroke-width="5" stroke-linecap="round">
+    <path d="M7 13 A15 15 0 0 1 33 15"/>
+    <path d="M33 27 A15 15 0 0 1 7 25"/>
+  </g>
+  <path d="M20 14 L26 20 L20 26 L14 20 Z" fill="url(#enhGrad)"/>
 </svg>`;
 
 function dropdownHtml(menu, wide) {
