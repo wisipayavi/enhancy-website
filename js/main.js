@@ -120,6 +120,8 @@
     const iso = document.querySelector(".iso");
     if (!hero || !iso || iso.dataset.bound) return;
     if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Skip parallax on touch / coarse-pointer devices (no hover) to avoid jank
+    if (window.matchMedia && (window.matchMedia("(hover: none)").matches || window.matchMedia("(pointer: coarse)").matches)) return;
     iso.dataset.bound = "1";
     hero.addEventListener("pointermove", (e) => {
       const r = hero.getBoundingClientRect();

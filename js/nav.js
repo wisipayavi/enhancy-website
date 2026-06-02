@@ -131,7 +131,7 @@ function renderHeader() {
   if (!host) return;
   host.innerHTML = `
   <div class="container nav">
-    <a class="brand" href="index.html">${LOGO_SVG} <span class="brand-word">Enhency</span></a>
+    <a class="brand" href="index.html"><img class="logo-img" src="assets/logo.svg" alt="Enhency" width="135" height="35"/></a>
     <nav class="nav-menu" id="navMenu" aria-label="Primary">
       ${navItemHtml("products", NAV.products)}
       ${navItemHtml("solutions", NAV.solutions)}
@@ -160,7 +160,7 @@ function renderFooter() {
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <a class="brand" href="index.html">${LOGO_SVG} Enhency</a>
+        <a class="brand" href="index.html"><img class="logo-img" src="assets/logo.svg" alt="Enhency" width="135" height="35"/></a>
         <p>Modern payment & banking infrastructure for financial businesses.</p>
         <address class="footer-addr">
           <strong>Enhency Technologies Private Limited</strong><br/>
@@ -242,6 +242,12 @@ function injectExtras() {
     link.type = "image/svg+xml";
     link.href = "assets/favicon.svg";
     document.head.appendChild(link);
+  }
+  if (!document.querySelector('link[rel="apple-touch-icon"]')) {
+    const al = document.createElement("link");
+    al.rel = "apple-touch-icon";
+    al.href = "assets/favicon.png";
+    document.head.appendChild(al);
   }
   if (!document.querySelector('meta[name="theme-color"]')) {
     const m = document.createElement("meta");
