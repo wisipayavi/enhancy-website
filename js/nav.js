@@ -265,7 +265,33 @@ function injectExtras() {
   }
 }
 
+/* Mobile nav: bound here (synchronously, right after the header is injected)
+   so it never depends on main.js load timing. */
+function bindMobileNav() {
+  const toggle = document.getElementById("navToggle");
+  const menu = document.getElementById("navMenu");
+  if (!toggle || !menu) return;
+  const setOpen = (open) => {
+    menu.classList.toggle("open", open);
+    toggle.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
+    setOpen(!menu.classList.contains("open"));
+  });
+  // Tapping any link inside the menu closes it
+  menu.addEventListener("click", (e) => {
+    if (e.target.closest("a")) setOpen(false);
+  });
+  // Close on Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setOpen(false);
+  });
+}
+
 renderHeader();
 renderFooter();
 injectExtras();
+bindMobileNav();
 runVisitCounter();

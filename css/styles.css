@@ -260,7 +260,7 @@ p { color: var(--text); }
 .viz svg { width: 100%; height: auto; max-height: 300px; }
 
 /* ---------- Mobile responsiveness refinements ---------- */
-html, body { overflow-x: hidden; max-width: 100%; }
+body { overflow-x: clip; }
 img, svg, canvas { max-width: 100%; }
 
 @media (max-width: 1000px) {
@@ -485,6 +485,9 @@ img, svg, canvas { max-width: 100%; }
   .footer-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 860px) {
+  /* backdrop-filter on the header would trap the fixed menu inside the header's
+     box — disable it on mobile so the menu can cover the viewport */
+  .site-header { -webkit-backdrop-filter: none; backdrop-filter: none; background: #fff; }
   .nav-menu, .nav-actions .btn-secondary { display: none; }
   .nav-toggle { display: flex; }
   .nav-menu.open {

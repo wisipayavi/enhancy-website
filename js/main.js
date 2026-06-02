@@ -4,24 +4,6 @@
 (function () {
   "use strict";
 
-  /* Mobile nav toggle (header is injected by nav.js, so query lazily) */
-  function bindNav() {
-    const toggle = document.getElementById("navToggle");
-    const menu = document.getElementById("navMenu");
-    if (!toggle || !menu) return;
-    toggle.addEventListener("click", () => {
-      const open = menu.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", String(open));
-      document.body.style.overflow = open ? "hidden" : "";
-    });
-    // On mobile, tapping a top-level item with a dropdown shouldn't navigate to "#"
-    menu.querySelectorAll(".nav-item > .nav-link").forEach((link) => {
-      link.addEventListener("click", (e) => {
-        if (window.innerWidth <= 860 && link.getAttribute("href") === "#") e.preventDefault();
-      });
-    });
-  }
-
   /* Scroll reveal */
   const io =
     "IntersectionObserver" in window
@@ -141,7 +123,6 @@
   }
 
   function init() {
-    bindNav();
     observeReveals();
     bindCounters();
     bindForms();
