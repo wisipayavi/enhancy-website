@@ -122,12 +122,38 @@
     });
   }
 
+  /* Cursor-follow spotlight on cards (delegated, rAF-throttled) */
+  function bindCardSpotlight() {
+    if (window.matchMedia && window.matchMedia("(hover: none)").matches) return;
+    if (document.body.dataset.spotBound) return;
+    document.body.dataset.spotBound = "1";
+    let raf = 0, pending = null;
+    document.addEventListener(
+      "pointermove",
+      (e) => {
+        const card = e.target.closest ? e.target.closest(".card") : null;
+        if (!card) return;
+        pending = { card, x: e.clientX, y: e.clientY };
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          if (!pending) return;
+          const r = pending.card.getBoundingClientRect();
+          pending.card.style.setProperty("--mx", pending.x - r.left + "px");
+          pending.card.style.setProperty("--my", pending.y - r.top + "px");
+        });
+      },
+      { passive: true }
+    );
+  }
+
   function init() {
     observeReveals();
     bindCounters();
     bindForms();
     bindToTop();
     bindParallax();
+    bindCardSpotlight();
   }
 
   if (document.readyState !== "loading") init();
