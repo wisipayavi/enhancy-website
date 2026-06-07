@@ -263,6 +263,14 @@ function injectExtras() {
     b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg>';
     document.body.appendChild(b);
   }
+  // load the lead-capture chat assistant (once, on every page)
+  if (!document.getElementById("enhChatScript")) {
+    var cs = document.createElement("script");
+    cs.id = "enhChatScript";
+    cs.src = "js/chat.js";
+    cs.defer = true;
+    document.body.appendChild(cs);
+  }
 }
 
 /* Mobile nav: bound here (synchronously, right after the header is injected)
