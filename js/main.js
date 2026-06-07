@@ -90,6 +90,7 @@
           .then((res) => { if (!res.ok) throw new Error("bad"); return res.json().catch(() => ({})); })
           .then(() => {
             if (note) { note.hidden = false; note.textContent = "Thanks! Your inquiry has been sent — our team will reply within one business day."; }
+            if (btn) btn.textContent = "Sent ✓";
             form.querySelectorAll("input, textarea, select, button").forEach((f) => (f.disabled = true));
           })
           .catch(() => {
