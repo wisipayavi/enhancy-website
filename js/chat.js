@@ -21,6 +21,13 @@
     risk: "Verification Suite (eKYC · CKYC · Video KYC) and Enhency Shield (EFRM · I4C) power secure onboarding and fraud prevention. 🛡️",
   };
 
+  var TOPICS_MORE = {
+    upi: "On UPI we cover the full lifecycle: merchant onboarding, QR & intent/collect flows, smart transaction routing, reconciliation and settlement — with SDKs and S2S for fast integration. Issuing handles authorization & account validation, and the TPAP stack lets you launch your own UPI app.",
+    merchant: "Merchant Suite gives centralized onboarding, payment acceptance, settlement and reconciliation dashboards. Soundbox & QR add instant audio confirmations and interoperable QR; POS covers in-store device management and real-time transaction processing.",
+    banking: "Digital Banking ships responsive banking websites with SSL, hosting and domain management, plus banking software. Enhency Mobile delivers a secure mobile banking app — accounts, real-time transfers, notifications and biometric authentication.",
+    risk: "Verification Suite streamlines onboarding with eKYC, CKYC and Video KYC via simple APIs. Enhency Shield adds real-time transaction monitoring, anomaly detection and fraud intelligence (EFRM, I4C) to keep your operations secure.",
+  };
+
   var st = { stage: "idle", data: {}, opened: false };
 
   /* ---------- build UI ---------- */
@@ -110,15 +117,26 @@
     }, 700);
   }
 
+  function afterTopic(key) {
+    quick([
+      { label: "Tell me more", fn: function () {
+          botSay(TOPICS_MORE[key]);
+          setTimeout(function () {
+            quick([
+              { label: "Yes, contact me", fn: function () { startLead(key); } },
+              { label: "Ask something else", fn: function () { botSay("Sure — what else can I help with?"); showMenu(); } },
+            ]);
+          }, 850);
+        } },
+      { label: "Yes, contact me", fn: function () { startLead(key); } },
+      { label: "Ask something else", fn: function () { botSay("Sure — what else can I help with?"); showMenu(); } },
+    ]);
+  }
+
   function topic(key) {
     st.data.interest = key;
     botSay(TOPICS[key]);
-    setTimeout(function () {
-      quick([
-        { label: "Yes, contact me", fn: function () { startLead(key); } },
-        { label: "Ask something else", fn: function () { botSay("Sure — what else can I help with?"); showMenu(); } },
-      ]);
-    }, 750);
+    setTimeout(function () { afterTopic(key); }, 800);
   }
 
   function startLead(interest) {
@@ -136,8 +154,8 @@
     if (/bank|mobile|app|website|hosting|ssl/.test(s)) return topic("banking");
     if (/kyc|verif|fraud|risk|shield|ckyc|onboard/.test(s)) return topic("risk");
     if (/pric|cost|demo|sales|contact|quote|buy|talk/.test(s)) return startLead("");
-    botSay("Got it 👍 Let me connect you with our team for the best answer.");
-    setTimeout(function () { startLead(""); }, 700);
+    botSay("Enhency is a full-stack payment & banking infrastructure platform — UPI, IMPS & NACH rails, merchant payments, KYC & fraud prevention, and digital banking. Which area can I help you with?");
+    showMenu();
   }
 
   function submitLead() {

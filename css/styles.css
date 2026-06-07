@@ -469,8 +469,10 @@ img, svg, canvas { max-width: 100%; }
 .enh-htxt { flex: 1; line-height: 1.2; }
 .enh-htxt b { display: block; font-size: .95rem; }
 .enh-htxt span { font-size: .74rem; color: #aebbd6; }
-.enh-close { background: none; border: 0; color: #aebbd6; font-size: 1.5rem; line-height: 1; cursor: pointer; padding: 0 4px; }
-.enh-close:hover { color: #fff; }
+.enh-close { flex: none; width: 32px; height: 32px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(255,255,255,.16); color: #fff; font-size: 1.35rem; line-height: 1; display: grid; place-items: center;
+  transition: background .15s, transform .15s; }
+.enh-close:hover { background: rgba(255,255,255,.32); transform: rotate(90deg); }
 
 .enh-body { flex: 1; overflow-y: auto; padding: 16px; background: var(--bg-soft); display: flex; flex-direction: column; gap: 10px; }
 .enh-msg { max-width: 82%; padding: .6rem .8rem; border-radius: 14px; font-size: .9rem; line-height: 1.45; word-wrap: break-word; }
