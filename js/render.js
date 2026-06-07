@@ -370,9 +370,8 @@ function renderContact() {
         <p class="lead">Share your business requirements, infrastructure needs, partnership inquiries, or operational questions with our team.</p>
         <div class="cap-list" style="margin-top:1.6rem">
           ${[
-            ["Sales", "sales@enhency.com"],
             ["Support", "support@enhency.com"],
-            ["Business", "hello@enhency.com"],
+            ["Business", "business@enhency.com"],
             ["Working Hours", "Mon–Sat · 9:00 AM – 7:00 PM IST"],
           ].map((r) => `<div class="cap-item"><span class="tick">${ICONS.tick}</span><div><b>${r[0]}</b><span>${r[1]}</span></div></div>`).join("")}
         </div>
@@ -388,7 +387,7 @@ function renderContact() {
         </div>
         <div class="field"><label>Inquiry Type</label>
           <select name="type">
-            <option>Sales Inquiry</option><option>Partnership Inquiry</option><option>Technical Support</option>
+            <option>Partnership Inquiry</option><option>Technical Support</option>
             <option>Merchant Support</option><option>Developer Support</option><option>General Inquiry</option>
           </select>
         </div>
