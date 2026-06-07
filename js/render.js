@@ -376,7 +376,7 @@ function renderContact() {
           ].map((r) => `<div class="cap-item"><span class="tick">${ICONS.tick}</span><div><b>${r[0]}</b><span>${r[1]}</span></div></div>`).join("")}
         </div>
       </div>
-      <form class="form-card reveal" id="contactForm" action="https://formsubmit.co/business@enhency.com" method="POST" novalidate>
+      <form class="form-card reveal" id="contactForm" action="https://formsubmit.co/support@enhency.com" method="POST" novalidate>
         <input type="hidden" name="_subject" value="New inquiry — Enhency website">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">

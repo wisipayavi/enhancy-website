@@ -67,7 +67,7 @@
     obs.observe(band);
   }
 
-  /* Contact form -> emails the inquiry to business@enhency.com via FormSubmit
+  /* Contact form -> emails the inquiry to support@enhency.com via FormSubmit
      (no backend needed). Submits over AJAX so the page doesn't redirect. */
   function bindForms() {
     document.querySelectorAll("form#contactForm").forEach((form) => {
@@ -75,7 +75,7 @@
       form.dataset.bound = "1";
       const note = form.querySelector("#formNote");
       const btn = form.querySelector('button[type="submit"]');
-      const endpoint = form.getAttribute("action") || "https://formsubmit.co/business@enhency.com";
+      const endpoint = form.getAttribute("action") || "https://formsubmit.co/support@enhency.com";
       const ajax = endpoint.replace("formsubmit.co/", "formsubmit.co/ajax/");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -93,7 +93,7 @@
             form.querySelectorAll("input, textarea, select, button").forEach((f) => (f.disabled = true));
           })
           .catch(() => {
-            if (note) { note.hidden = false; note.style.color = "#c0392b"; note.textContent = "Couldn't send right now. Please email business@enhency.com directly."; }
+            if (note) { note.hidden = false; note.style.color = "#c0392b"; note.textContent = "Couldn't send right now. Please email support@enhency.com directly."; }
             if (btn) { btn.disabled = false; btn.textContent = original; }
           });
       });
