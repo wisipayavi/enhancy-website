@@ -67,20 +67,35 @@
     obs.observe(band);
   }
 
-  /* Contact / demo form (no backend — friendly confirmation) */
+  /* Contact form -> emails the inquiry to business@enhency.com via FormSubmit
+     (no backend needed). Submits over AJAX so the page doesn't redirect. */
   function bindForms() {
     document.querySelectorAll("form#contactForm").forEach((form) => {
       if (form.dataset.bound) return;
       form.dataset.bound = "1";
+      const note = form.querySelector("#formNote");
+      const btn = form.querySelector('button[type="submit"]');
+      const endpoint = form.getAttribute("action") || "https://formsubmit.co/business@enhency.com";
+      const ajax = endpoint.replace("formsubmit.co/", "formsubmit.co/ajax/");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         if (!form.checkValidity()) {
           form.reportValidity();
           return;
         }
-        const note = form.querySelector("#formNote");
-        if (note) note.hidden = false;
-        form.querySelectorAll("input, textarea, select, button").forEach((f) => (f.disabled = true));
+        const original = btn ? btn.textContent : "";
+        if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+        if (note) { note.hidden = true; note.style.color = ""; }
+        fetch(ajax, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
+          .then((res) => { if (!res.ok) throw new Error("bad"); return res.json().catch(() => ({})); })
+          .then(() => {
+            if (note) { note.hidden = false; note.textContent = "Thanks! Your inquiry has been sent — our team will reply within one business day."; }
+            form.querySelectorAll("input, textarea, select, button").forEach((f) => (f.disabled = true));
+          })
+          .catch(() => {
+            if (note) { note.hidden = false; note.style.color = "#c0392b"; note.textContent = "Couldn't send right now. Please email business@enhency.com directly."; }
+            if (btn) { btn.disabled = false; btn.textContent = original; }
+          });
       });
     });
   }
