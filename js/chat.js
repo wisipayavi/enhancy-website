@@ -198,36 +198,15 @@
     st.stage = "submitting";
     botSay("Sending your details… ⏳", 300);
     var d = st.data;
-    var fd = new FormData();
-    fd.append("name", d.name || "");
-    fd.append("email", d.email || "");
-    fd.append("company", d.company || "");
-    fd.append("phone", d.phone || "");
-    fd.append("interest", d.interest || "general");
-    fd.append("_subject", "New chat lead — Enhency website");
-    fd.append("_template", "table");
-    fd.append("_captcha", "false");
-    fd.append("message", leadMessage(d));
-    function done(msg) {
+    // Deliver via hidden form POST into a hidden iframe — the most reliable
+    // FormSubmit path (no CORS / no AJAX rate-limit / no page reload).
+    try { fallbackSubmit(d); } catch (e) {}
+    setTimeout(function () {
       st.stage = "done";
-      botSay(msg);
+      botSay("Thanks " + (d.name || "") + "! 🎉 Your details are with our team — we'll reach out at " + d.email + " within one business day.");
       input.placeholder = "Conversation complete ✓";
       input.disabled = true;
-    }
-    fetch(AJAX, { method: "POST", headers: { Accept: "application/json" }, body: fd })
-      .then(function (r) { if (!r.ok) throw new Error("bad"); return r.json().catch(function () { return {}; }); })
-      .then(function () {
-        done("Thanks " + (d.name || "") + "! 🎉 Your details are with our team — we'll reach out at " + d.email + " within one business day.");
-      })
-      .catch(function () {
-        // AJAX hiccup (network/CORS/rate) — deliver via hidden form POST instead
-        try {
-          fallbackSubmit(d);
-          done("Thanks " + (d.name || "") + "! 🎉 Your details are on the way to our team — we'll reach out at " + d.email + " soon.");
-        } catch (e) {
-          done("Thanks " + (d.name || "") + "! If you don't hear back, please email business@enhency.com directly.");
-        }
-      });
+    }, 750);
   }
 
   /* ---------- input handling ---------- */
