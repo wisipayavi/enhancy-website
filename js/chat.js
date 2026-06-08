@@ -158,6 +158,42 @@
     showMenu();
   }
 
+  function leadMessage(d) {
+    return "New lead from the website chat assistant.\n" +
+      "Interest: " + (d.interest || "-") + "\n" +
+      "Name: " + (d.name || "-") + "\n" +
+      "Email: " + (d.email || "-") + "\n" +
+      "Company: " + (d.company || "-") + "\n" +
+      "Phone: " + (d.phone || "-");
+  }
+
+  // Reliable fallback: post the lead via a hidden form into a hidden iframe
+  // (delivers through FormSubmit's normal endpoint without navigating the page).
+  function fallbackSubmit(d) {
+    var sink = document.createElement("iframe");
+    sink.name = "enhSink_" + Date.now();
+    sink.style.display = "none";
+    document.body.appendChild(sink);
+    var f = document.createElement("form");
+    f.method = "POST";
+    f.action = "https://formsubmit.co/" + LEAD_EMAIL;
+    f.target = sink.name;
+    f.style.display = "none";
+    var fields = {
+      name: d.name, email: d.email, company: d.company, phone: d.phone,
+      interest: d.interest || "general", _subject: "New chat lead — Enhency website",
+      _template: "table", _captcha: "false", message: leadMessage(d),
+      _next: location.origin + "/",
+    };
+    Object.keys(fields).forEach(function (k) {
+      var i = document.createElement("input");
+      i.type = "hidden"; i.name = k; i.value = fields[k] || "";
+      f.appendChild(i);
+    });
+    document.body.appendChild(f);
+    f.submit();
+  }
+
   function submitLead() {
     st.stage = "submitting";
     botSay("Sending your details… ⏳", 300);
@@ -171,26 +207,26 @@
     fd.append("_subject", "New chat lead — Enhency website");
     fd.append("_template", "table");
     fd.append("_captcha", "false");
-    fd.append(
-      "message",
-      "New lead from the website chat assistant.\n" +
-        "Interest: " + (d.interest || "-") + "\n" +
-        "Name: " + (d.name || "-") + "\n" +
-        "Email: " + (d.email || "-") + "\n" +
-        "Company: " + (d.company || "-") + "\n" +
-        "Phone: " + (d.phone || "-")
-    );
+    fd.append("message", leadMessage(d));
+    function done(msg) {
+      st.stage = "done";
+      botSay(msg);
+      input.placeholder = "Conversation complete ✓";
+      input.disabled = true;
+    }
     fetch(AJAX, { method: "POST", headers: { Accept: "application/json" }, body: fd })
       .then(function (r) { if (!r.ok) throw new Error("bad"); return r.json().catch(function () { return {}; }); })
       .then(function () {
-        st.stage = "done";
-        botSay("Thanks " + (d.name || "") + "! 🎉 Your details are with our team — we'll reach out at " + d.email + " within one business day.");
-        input.placeholder = "Conversation complete ✓";
-        input.disabled = true;
+        done("Thanks " + (d.name || "") + "! 🎉 Your details are with our team — we'll reach out at " + d.email + " within one business day.");
       })
       .catch(function () {
-        st.stage = "done";
-        botSay("Thanks " + (d.name || "") + "! I couldn't reach the server just now — please email business@enhency.com directly and we'll respond fast.");
+        // AJAX hiccup (network/CORS/rate) — deliver via hidden form POST instead
+        try {
+          fallbackSubmit(d);
+          done("Thanks " + (d.name || "") + "! 🎉 Your details are on the way to our team — we'll reach out at " + d.email + " soon.");
+        } catch (e) {
+          done("Thanks " + (d.name || "") + "! If you don't hear back, please email business@enhency.com directly.");
+        }
       });
   }
 
