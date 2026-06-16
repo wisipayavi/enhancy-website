@@ -530,6 +530,10 @@ img, svg, canvas { max-width: 100%; }
 @keyframes isoFloatP { 0%, 100% { transform: translateY(0); opacity: .45; } 50% { transform: translateY(-16px); opacity: .8; } }
 .iso-float { animation: isoFloat2 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 .iso-particle { animation: isoFloatP 5.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.iso-layer { transition: transform .25s ease-out; }
+.iso-chip { cursor: pointer; transition: transform .2s ease; transform-box: fill-box; transform-origin: center; }
+.iso-chip:hover { transform: translateY(-4px) scale(1.12); }
+.iso-chip:hover rect { stroke: #1d4ed8; stroke-width: 2; }
 @keyframes ping { 0% { transform: scale(.4); opacity: .55; } 70% { opacity: 0; } 100% { transform: scale(1.9); opacity: 0; } }
 @keyframes isoRingRot { to { transform: rotate(360deg); } }
 @keyframes isoFadeIn { from { opacity: 0; } to { opacity: 1; } }

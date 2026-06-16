@@ -121,6 +121,7 @@
     // Skip parallax on touch / coarse-pointer devices (no hover) to avoid jank
     if (window.matchMedia && (window.matchMedia("(hover: none)").matches || window.matchMedia("(pointer: coarse)").matches)) return;
     iso.dataset.bound = "1";
+    const layers = [...iso.querySelectorAll(".iso-layer")];
     hero.addEventListener("pointermove", (e) => {
       const r = hero.getBoundingClientRect();
       const px = e.clientX - r.left;
@@ -128,11 +129,17 @@
       const nx = px / r.width - 0.5;
       const ny = py / r.height - 0.5;
       iso.style.transform = `rotateX(${(-ny * 6).toFixed(2)}deg) rotateY(${(nx * 8).toFixed(2)}deg)`;
+      // depth parallax: each layer drifts by its data-depth (more = closer)
+      layers.forEach((l) => {
+        const dep = parseFloat(l.getAttribute("data-depth")) || 0;
+        l.setAttribute("transform", `translate(${(nx * dep).toFixed(1)} ${(ny * dep).toFixed(1)})`);
+      });
       hero.style.setProperty("--mx", px + "px");
       hero.style.setProperty("--my", py + "px");
     });
     hero.addEventListener("pointerleave", () => {
       iso.style.transform = "";
+      layers.forEach((l) => l.setAttribute("transform", "translate(0 0)"));
       hero.style.removeProperty("--mx");
       hero.style.removeProperty("--my");
     });
