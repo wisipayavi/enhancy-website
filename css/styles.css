@@ -526,6 +526,10 @@ img, svg, canvas { max-width: 100%; }
 .iso-spin { animation: isoSpin 18s linear infinite; transform-box: fill-box; transform-origin: center; }
 .iso-glow { animation: isoGlow 4.5s ease-in-out infinite; }
 .iso-link { stroke-dasharray: 5 7; animation: isoDash 1.3s linear infinite; }
+@keyframes isoFloat2 { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes isoFloatP { 0%, 100% { transform: translateY(0); opacity: .45; } 50% { transform: translateY(-16px); opacity: .8; } }
+.iso-float { animation: isoFloat2 6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.iso-particle { animation: isoFloatP 5.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes ping { 0% { transform: scale(.4); opacity: .55; } 70% { opacity: 0; } 100% { transform: scale(1.9); opacity: 0; } }
 @keyframes isoRingRot { to { transform: rotate(360deg); } }
 @keyframes isoFadeIn { from { opacity: 0; } to { opacity: 1; } }
