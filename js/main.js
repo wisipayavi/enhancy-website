@@ -184,6 +184,73 @@
     }, 1400);
   }
 
+  /* Rich tooltips for the isometric hero chips */
+  function bindChipTips() {
+    const iso = document.querySelector(".iso");
+    if (!iso || iso.dataset.tips) return;
+    // Skip on touch / coarse-pointer devices (tooltips follow the cursor)
+    if (window.matchMedia && (window.matchMedia("(hover: none)").matches || window.matchMedia("(pointer: coarse)").matches)) return;
+    iso.dataset.tips = "1";
+
+    const TIPS = {
+      UCB: ["Urban Cooperative Banks", "Modern UPI, IMPS & NACH rails for urban cooperative banks — API-first and go-live ready."],
+      DCCB: ["District Central Cooperative Banks", "Connect DCCBs to real-time payments with settlement, reconciliation and compliance built in."],
+      StCB: ["State Cooperative Banks", "Apex-tier banking infrastructure for state cooperative banks across the network."],
+      PACS: ["Primary Agricultural Credit Societies", "Bring last-mile PACS online with digital onboarding and payment acceptance."],
+      Soundbox: ["Audio Confirmation Device", "Instant multi-language audio confirmation of every merchant collection."],
+      QR: ["Interoperable QR", "Dynamic & static UPI QR for fast, low-cost in-store and online acceptance."],
+      POS: ["Point of Sale", "In-store device management with real-time authorization and settlement."],
+      PG: ["Payment Gateway", "Unified online checkout — cards, UPI, netbanking & wallets via one integration."],
+      UPI: ["Unified Payments Interface", "Full UPI stack — Acquiring, Issuing & TPAP (SDK / S2S) for banks and fintechs."],
+      IMPS: ["Immediate Payment Service", "24×7 real-time interbank fund transfers with instant confirmation."],
+      NACH: ["National Automated Clearing House", "Bulk recurring debits & credits — mandates, payroll and collections at scale."],
+      KYC: ["Verification Suite", "eKYC · CKYC · Video KYC plus fraud prevention for secure onboarding."],
+    };
+
+    let tip = null;
+    function ensureTip() {
+      if (!tip) {
+        tip = document.createElement("div");
+        tip.className = "enh-tip";
+        document.body.appendChild(tip);
+      }
+      return tip;
+    }
+    function place(e) {
+      if (!tip) return;
+      const pad = 16;
+      let x = e.clientX + pad;
+      let y = e.clientY + pad;
+      const w = tip.offsetWidth, h = tip.offsetHeight;
+      if (x + w + 8 > window.innerWidth) x = e.clientX - w - pad;
+      if (y + h + 8 > window.innerHeight) y = e.clientY - h - pad;
+      tip.style.left = x + "px";
+      tip.style.top = y + "px";
+    }
+
+    iso.addEventListener("pointerover", (e) => {
+      const chip = e.target.closest ? e.target.closest(".iso-chip") : null;
+      if (!chip) return;
+      const t = chip.querySelector("title");
+      const key = t ? t.textContent.trim() : "";
+      const info = TIPS[key];
+      if (!info) return;
+      const el = ensureTip();
+      el.innerHTML = "<b></b><span></span>";
+      el.querySelector("b").textContent = info[0];
+      el.querySelector("span").textContent = info[1];
+      place(e);
+      requestAnimationFrame(() => el.classList.add("show"));
+    });
+    iso.addEventListener("pointermove", (e) => {
+      if (tip && tip.classList.contains("show")) place(e);
+    });
+    iso.addEventListener("pointerout", (e) => {
+      const chip = e.target.closest ? e.target.closest(".iso-chip") : null;
+      if (chip && tip) tip.classList.remove("show");
+    });
+  }
+
   function init() {
     observeReveals();
     bindCounters();
@@ -192,6 +259,7 @@
     bindParallax();
     bindCardSpotlight();
     bindLiveTicker();
+    bindChipTips();
   }
 
   if (document.readyState !== "loading") init();

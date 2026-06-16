@@ -543,6 +543,34 @@ img, svg, canvas { max-width: 100%; }
 .iso-ringrot { transform-box: fill-box; transform-origin: center; animation: isoRingRot 24s linear infinite; }
 .iso { animation: isoFadeIn 1s ease-out both; }
 
+/* Entrance reveal — staggered per layer */
+@keyframes isoReveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Auto sheen sweep across the hub */
+@keyframes isoSheen { 0% { transform: translateX(-220px) skewX(-18deg); } 55%, 100% { transform: translateX(300px) skewX(-18deg); } }
+.iso-sheen { animation: isoSheen 5.5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; opacity: .7; mix-blend-mode: screen; }
+
+/* Floor focus — dim sibling floors while hovering one */
+@media (hover: hover) {
+  .iso:has(.iso-floor-layer:hover) .iso-floor-layer { opacity: .4; transition: opacity .3s ease; }
+  .iso:has(.iso-floor-layer:hover) .iso-floor-layer:hover { opacity: 1; }
+}
+
+/* Rich chip tooltip following the cursor */
+.enh-tip {
+  position: fixed; z-index: 1200; pointer-events: none;
+  max-width: 240px; padding: .6rem .75rem;
+  background: rgba(10, 23, 51, .96); color: #eaf2ff;
+  border: 1px solid rgba(120, 180, 255, .28); border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(10, 23, 51, .35);
+  font-size: .8rem; line-height: 1.35;
+  opacity: 0; transform: translateY(6px) scale(.97);
+  transition: opacity .16s ease, transform .16s ease;
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+}
+.enh-tip.show { opacity: 1; transform: translateY(0) scale(1); }
+.enh-tip b { color: #5fe6d8; display: block; margin-bottom: .2rem; font-size: .84rem; }
+
 /* ---------- Capability marquee ---------- */
 .marquee { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 .marquee-track { display: flex; gap: 12px; width: max-content; animation: marquee 32s linear infinite; }
