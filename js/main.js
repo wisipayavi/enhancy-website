@@ -170,6 +170,20 @@
     );
   }
 
+  /* Live transactions ticker in the hero scene */
+  function bindLiveTicker() {
+    const el = document.getElementById("liveTxn");
+    if (!el || el.dataset.t) return;
+    el.dataset.t = "1";
+    let n = 124000;
+    const fmt = (x) => x.toLocaleString("en-IN");
+    setInterval(() => {
+      n += Math.floor(Math.random() * 400) + 60;
+      if (n > 999000) n = 120000 + Math.floor(Math.random() * 6000);
+      el.textContent = fmt(n) + " / min";
+    }, 1400);
+  }
+
   function init() {
     observeReveals();
     bindCounters();
@@ -177,6 +191,7 @@
     bindToTop();
     bindParallax();
     bindCardSpotlight();
+    bindLiveTicker();
   }
 
   if (document.readyState !== "loading") init();
