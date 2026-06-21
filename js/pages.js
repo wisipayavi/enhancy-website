@@ -452,6 +452,76 @@ PAGES["enhency-shield"] = {
   cta: { headline: "Strengthen Financial Security with Enhency Shield", text: "Launch scalable fraud prevention and risk monitoring infrastructure with real-time transaction visibility, operational intelligence, and centralized fraud management.", primary: DEMO, secondary: CONTACT },
 };
 
+PAGES["enhency-ai"] = {
+  crumb: [{ t: "Products", href: "#" }, { t: "Enhency AI" }],
+  hero: { headline: "Enterprise AI for Customer Engagement & Workflow Automation", text: "Deploy AI Chatbots, Voice Bots, AI Agents, and Omnichannel Assistants across your business in weeks, not months — powered by enterprise-grade AI infrastructure for customer engagement, voice automation, intelligent support, and workflow automation.", primary: DEMO, secondary: SALES, visual: "dashboard" },
+  intro: { title: "Enterprise AI Infrastructure for Customer & Operational Intelligence", text: "Enhency AI enables banks, fintechs, government bodies, insurers, and enterprises to transform customer interactions and automate business operations through AI chatbots, voice bots, autonomous agents, omnichannel assistants, and intelligent workflow automation." },
+  overview: { title: "One AI Platform for Engagement & Automation", text: "Build intelligent customer experiences and automate operations through enterprise-grade AI infrastructure spanning chat, voice, agents, omnichannel, and risk intelligence.", cards: [
+    { t: "AI Chatbots", d: "Instant 24×7 support across website, mobile app, WhatsApp and customer portals." },
+    { t: "AI Voice & IVR", d: "Human-like AI voice experiences that replace traditional IVR menus." },
+    { t: "AI Agents", d: "Autonomous assistants that understand, decide, and act on tasks." },
+    { t: "Omnichannel AI", d: "One consistent AI experience across every customer touchpoint." },
+  ]},
+  sections: [
+    { title: "AI Chatbots", text: "Deliver instant support across Website, Mobile App, WhatsApp, and Customer Portals with knowledge-grounded conversational AI.", caps: [
+      { t: "24×7 Customer Support", d: "Always-on automated support across every digital channel." },
+      { t: "Lead Qualification", d: "Capture, qualify and route leads to your sales teams automatically." },
+      { t: "FAQ Automation", d: "Resolve common queries instantly with knowledge-base answers." },
+      { t: "Multilingual Conversations", d: "Engage customers in their preferred language at scale." },
+    ]},
+    { title: "AI Voice & IVR", text: "Replace traditional IVR with human-like AI voice experiences for natural, efficient customer conversations.", caps: [
+      { t: "AI Voice Bots", d: "Natural voice conversations that understand intent and respond." },
+      { t: "Smart Call Routing", d: "Route calls to the right place instantly based on context." },
+      { t: "Customer Verification", d: "Authenticate callers securely before sensitive actions." },
+      { t: "Collections & Reminders", d: "Automate payment reminders, confirmations and scheduling." },
+    ]},
+    { title: "AI Agents", text: "Autonomous AI assistants that understand, decide, and act — executing workflows and automating operational tasks end to end.", caps: [
+      { t: "Workflow Execution", d: "Run multi-step business workflows autonomously and reliably." },
+      { t: "Task Automation", d: "Offload repetitive operational work to AI agents." },
+      { t: "Knowledge Retrieval", d: "Surface the right information from your systems on demand." },
+      { t: "System Integrations", d: "Connect agents securely to your core platforms and tools." },
+    ]},
+    { title: "Omnichannel AI", text: "One AI experience across every customer touchpoint — web, mobile, WhatsApp, voice, contact center, and email.", caps: [
+      { t: "Web, App & WhatsApp", d: "Engage customers on website, mobile apps and WhatsApp." },
+      { t: "Voice & Contact Center", d: "Extend AI into voice channels and contact-center flows." },
+      { t: "Email & Support", d: "Automate email responses and support conversations." },
+      { t: "Unified Experience", d: "Consistent AI engagement across every channel and journey." },
+    ]},
+    { title: "AI Automation", text: "Reduce manual effort and improve operational efficiency by automating support, tickets, and business processes.", caps: [
+      { t: "Ticket Automation", d: "Auto-classify, route and resolve support tickets." },
+      { t: "Customer Support Automation", d: "Deflect repetitive queries and speed up resolutions." },
+      { t: "Workflow Management", d: "Orchestrate multi-step business processes end to end." },
+      { t: "Process Automation", d: "Reduce manual effort across back-office operations." },
+    ]},
+    { title: "AI Risk Intelligence", text: "Strengthen safety and compliance with AI-driven monitoring, anomaly detection, and intelligent operational visibility.", caps: [
+      { t: "Fraud Signal Detection", d: "Spot anomalous behaviour and risk patterns in real time." },
+      { t: "Conversation Monitoring", d: "Monitor AI interactions for compliance and safety." },
+      { t: "Intelligent Alerts", d: "Trigger alerts on suspicious activity across channels." },
+      { t: "Operational Visibility", d: "Centralized visibility into AI risk and performance." },
+    ]},
+  ],
+  benefits: { title: "Why Enhency AI", cards: [
+    { t: "Faster Deployment", d: "Launch chatbots, voice bots and agents in weeks, not months." },
+    { t: "Lower Operational Cost", d: "Automate repetitive work and reduce support workload." },
+    { t: "Better Customer Experience", d: "Instant, multilingual, 24×7 engagement across channels." },
+    { t: "Enterprise Security", d: "Enterprise-grade security and operational governance." },
+  ]},
+  developer: { title: "Developer-Friendly AI Infrastructure", text: "Accelerate AI integrations through APIs, chat & voice SDKs, knowledge-base connectors, technical documentation, and scalable infrastructure.", tags: ["APIs", "Chat SDKs", "Voice APIs", "Webhooks", "Knowledge Base", "Sandbox Access"] },
+  security: { title: "Enterprise-Grade AI Security & Governance", text: "Enhency AI supports secure customer interactions, data governance, conversation monitoring, and scalable operational controls.", cards: [
+    { t: "Secure Interactions", d: "Protect customer conversations through enterprise-grade controls." },
+    { t: "Data Governance", d: "Support compliant handling of customer and conversation data." },
+    { t: "Conversation Monitoring", d: "Monitor AI interactions for safety, quality and compliance." },
+    { t: "Operational Reliability", d: "Maintain resilient AI operations through scalable infrastructure." },
+  ]},
+  useCases: { title: "Industries We Serve", cards: [
+    { t: "Banking & Fintech", d: "Automate support, onboarding and collections with AI." },
+    { t: "Government", d: "Scale citizen engagement through multilingual AI assistants." },
+    { t: "Insurance", d: "Streamline claims, queries and policy support with AI agents." },
+    { t: "Enterprises & Merchant Networks", d: "Automate operations and customer engagement at scale." },
+  ]},
+  cta: { headline: "Ready to Scale with AI?", text: "Build intelligent customer experiences with Enhency AI — chatbots, voice bots, autonomous agents, omnichannel assistants, and workflow automation.", primary: DEMO, secondary: CONTACT },
+};
+
 /* ---------------- SOLUTIONS ---------------- */
 
 PAGES["merchant-suite"] = {

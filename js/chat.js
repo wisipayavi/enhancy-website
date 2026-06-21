@@ -19,6 +19,7 @@
     merchant: "Our Merchant Suite, Soundbox & QR, and POS cover onboarding, collections, settlement and reconciliation — one platform for merchant payments. 🏪",
     banking: "Enhency Mobile and Digital Banking let you launch secure banking apps & websites with hosting, SSL, domains and software. 📱",
     risk: "Verification Suite (eKYC · CKYC · Video KYC) and Enhency Shield (EFRM · I4C) power secure onboarding and fraud prevention. 🛡️",
+    ai: "Enhency AI brings AI Chatbots, AI Voice & IVR, AI Agents, Omnichannel AI and Workflow Automation — deploy intelligent customer engagement and automation in weeks. 🤖",
   };
 
   var TOPICS_MORE = {
@@ -26,6 +27,7 @@
     merchant: "Merchant Suite gives centralized onboarding, payment acceptance, settlement and reconciliation dashboards. Soundbox & QR add instant audio confirmations and interoperable QR; POS covers in-store device management and real-time transaction processing.",
     banking: "Digital Banking ships responsive banking websites with SSL, hosting and domain management, plus banking software. Enhency Mobile delivers a secure mobile banking app — accounts, real-time transfers, notifications and biometric authentication.",
     risk: "Verification Suite streamlines onboarding with eKYC, CKYC and Video KYC via simple APIs. Enhency Shield adds real-time transaction monitoring, anomaly detection and fraud intelligence (EFRM, I4C) to keep your operations secure.",
+    ai: "Enhency AI covers AI Chatbots (web, app, WhatsApp & portals), AI Voice & IVR (human-like voice bots, smart routing, verification), autonomous AI Agents (workflow execution & task automation), Omnichannel AI across every touchpoint, plus AI Automation and AI Risk Intelligence — all on enterprise-grade, secure infrastructure.",
   };
 
   var st = { stage: "idle", data: {}, opened: false };
@@ -112,6 +114,7 @@
         { label: "Merchant & POS", fn: function () { topic("merchant"); } },
         { label: "Banking & Mobile", fn: function () { topic("banking"); } },
         { label: "KYC & Fraud", fn: function () { topic("risk"); } },
+        { label: "AI & Automation", fn: function () { topic("ai"); } },
         { label: "💬 Talk to sales", fn: function () { startLead(""); } },
       ]);
     }, 700);
@@ -153,6 +156,7 @@
     if (/merchant|qr|pos|soundbox|settle|reconcil|store/.test(s)) return topic("merchant");
     if (/bank|mobile|app|website|hosting|ssl/.test(s)) return topic("banking");
     if (/kyc|verif|fraud|risk|shield|ckyc|onboard/.test(s)) return topic("risk");
+    if (/\bai\b|chatbot|chat bot|voice|ivr|agent|automat|bot|omnichannel/.test(s)) return topic("ai");
     if (/pric|cost|demo|sales|contact|quote|buy|talk/.test(s)) return startLead("");
     botSay("Enhency is a full-stack payment & banking infrastructure platform — UPI, IMPS & NACH rails, merchant payments, KYC & fraud prevention, and digital banking. Which area can I help you with?");
     showMenu();

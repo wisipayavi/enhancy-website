@@ -25,6 +25,12 @@ const NAV = {
           { t: "Enhency Shield", d: "Fraud prevention — EFRM · I4C", href: "enhency-shield.html" },
         ],
       },
+      {
+        label: "AI & Intelligence",
+        items: [
+          { t: "Enhency AI", d: "Chatbots, voice, agents & automation", href: "enhency-ai.html" },
+        ],
+      },
     ],
   },
   solutions: {
@@ -175,6 +181,7 @@ function renderFooter() {
         { t: "NACH", href: "nach.html" },
         { t: "Verification Suite", href: "verification-suite.html" },
         { t: "Enhency Shield", href: "enhency-shield.html" },
+        { t: "Enhency AI", href: "enhency-ai.html" },
       ])}
       ${col("Solutions", [
         { t: "Merchant Suite", href: "merchant-suite.html" },
