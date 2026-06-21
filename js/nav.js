@@ -274,7 +274,7 @@ function injectExtras() {
   if (!document.getElementById("enhChatScript")) {
     var cs = document.createElement("script");
     cs.id = "enhChatScript";
-    cs.src = "js/chat.js";
+    cs.src = "js/chat.js?v=20260621b";
     cs.defer = true;
     document.body.appendChild(cs);
   }
