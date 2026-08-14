@@ -1,6 +1,6 @@
 /* ============================================================
    Enhency — Independence Day festive glimpse (auto date-gated)
-   Active window: 15–19 August (IST). On 20 Aug it stops
+   Active window: 14–19 August (IST). On 20 Aug it stops
    injecting anything, so the site returns to normal automatically.
    Self-contained: injects its own styles (no CSS file dependency).
    Preview any time with ?festive=1  ·  force off with ?festive=0
@@ -11,9 +11,9 @@
   window.__enhFestive = true;
 
   // Window boundaries in UTC for IST midnight (IST = UTC+5:30)
-  // 15 Aug 2026 00:00 IST == 14 Aug 2026 18:30 UTC
-  // 20 Aug 2026 00:00 IST == 19 Aug 2026 18:30 UTC
-  var START = Date.UTC(2026, 7, 14, 18, 30, 0);
+  // 14 Aug 2026 00:00 IST == 13 Aug 2026 18:30 UTC  (live from now)
+  // 20 Aug 2026 00:00 IST == 19 Aug 2026 18:30 UTC  (auto-reverts)
+  var START = Date.UTC(2026, 7, 13, 18, 30, 0);
   var END = Date.UTC(2026, 7, 19, 18, 30, 0);
 
   var q = "";
