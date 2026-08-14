@@ -274,9 +274,17 @@ function injectExtras() {
   if (!document.getElementById("enhChatScript")) {
     var cs = document.createElement("script");
     cs.id = "enhChatScript";
-    cs.src = "js/chat.js?v=20260621b";
+    cs.src = "js/chat.js?v=20260814f";
     cs.defer = true;
     document.body.appendChild(cs);
+  }
+  // load the date-gated Independence Day festive glimpse (self-removes after the window)
+  if (!document.getElementById("enhFestiveScript")) {
+    var fs = document.createElement("script");
+    fs.id = "enhFestiveScript";
+    fs.src = "js/festive.js?v=20260814f";
+    fs.defer = true;
+    document.body.appendChild(fs);
   }
 }
 
